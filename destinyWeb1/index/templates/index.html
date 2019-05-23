@@ -1,0 +1,166 @@
+<!--{% load staticfiles %}
+<!--把css路径替换成这样
+href = "{% static 'css/semantic.css' %}"-->
+
+
+<!--把所有图片路径替换成类似的格式{% static 'image/c.jpg' %}
+-->
+
+<html lang = "en">
+
+    <head>
+        <meta charset = "utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Django Simple Login</title>
+        <link rel="stylesheet" href="static/MDUI/css/mdui.min.css"/>
+    </head>
+    <style type = "text/css">
+        body
+        {   /*
+            *background-image:url("static/image/f.jpg");
+            *background-repeat:no-repeat;
+            *background-size:100% 1720%;
+            *background-attachment:inherit;
+            */
+
+            
+        }
+
+        #login {
+            font-family: 'Comic Sans MS', cursive, sans-serif; /*字体*/
+            color:#fff;
+            text-shadow:0 0 10px;
+            letter-spacing:1px;
+            text-align:center;
+        }   
+
+    </style>
+
+    <body class="mdui-theme-layout-dark mdui-theme-accent-Blue-Grey">
+    <div id = "login">
+        <div class="mdui-appbar">
+            <div class="mdui-toolbar mdui-color-Blue-Grey-50 mdui-btn-group mdui-hoverable">
+                <a href="javascript:;" class="mdui-typo-title mdui-center mdui-color-transparent">：给洒家算一卦！</a>
+                <button type = "button" class="mdui-btn"><i class="mdui-icon material-icons">format_align_justify</i></button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mdui-row">
+        <div class="mdui-col-xs-6">
+            <div class="mdui-panel" mdui-panel>
+                <div class="mdui-panel-item">
+                  <div class="mdui-panel-item-header">少侠莫急，先算算八字🐱‍👤</div>
+                  <div class="mdui-panel-item-body">
+                    <p> 
+                        <div class="mdui-row">
+                            <div class="mdui-col-xs-6 mdui-col-sm-4">
+                            
+                                <div class="mdui-container mdui-valign">
+                                <label>日期：</label>
+                                    <select name="year" class="mdui-select" mdui-select="{position: 'buttom'}">
+                                        {% for year111 in year %}
+                                            <option value="{{ year111}}">{{ year111 }}</option>
+                                        {% endfor %}
+                                        
+                                    </select>
+                                    <label>年</label>
+                                </div>
+                            </div>
+
+                            <div class="mdui-col-xs-6 mdui-col-sm-4">
+                                    <div class="mdui-container mdui-valign" >
+                                            <select name="month" class="mdui-select" mdui-select="{position: 'bottom'}">
+                                            
+                                            {% for month in month %}
+                                                <option value="{{ month }}">{{ month }}</option>
+                                            {% endfor %}
+                                            
+                                            </select>
+                                            <label>月</label>
+                                    </div>
+                            </div>
+
+                            <div class="mdui-col-xs-6 mdui-col-sm-4">
+                                    <div class="mdui-container mdui-valign">
+                                            <select class="mdui-select" mdui-select="{position: 'bottom'}">
+                                                {% for day in day %}
+                                                    <option value="{{ day }}">{{ day }}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <label>日</label>
+                                    </div>
+                            </div>
+                            <div class="mdui-divider-light"></div> 
+
+                    <div class="mdui-divider-light"></div>  
+                    </p>
+
+                      
+                <p>
+                    <label>时辰：</label>
+                    <select class="mdui-select" mdui-select="{position: 'bottom'}">
+                        <option value="0">子 00:00-00:59</option>
+                        <option value="1">丑 01:00-01:59</option>
+                        <option value="2">丑 02:00-02:59</option>
+                        <option value="3">寅 03:00-03:59</option>
+                        <option value="4">寅 04:00-04:59</option>
+                        <option value="5">卯 05:00-05:59</option>
+                        <option value="6">卯 06:00-06:59</option>
+                        <option value="7">辰 07:00-07:59</option>
+                        <option value="8">辰 08:00-08:59</option>
+                        <option value="9">巳 09:00-09:59</option>
+                        <option value="10">巳 10:00-10:59</option>
+                        <option value="11">午 11:00-11:59</option>
+                        <option value="12">午 12:00-12:59</option>
+                        <option value="13">未 13:00-13:59</option>
+                        <option value="14">未 14:00-14:59</option>
+                        <option value="15">申 15:00-15:59</option>
+                        <option value="16">申 16:00-16:59</option>
+                        <option value="17">酉 17:00-17:59</option>
+                        <option value="18">酉 18:00-18:59</option>
+                        <option value="19">戌 19:00-19:59</option>
+                        <option value="20">戌 20:00-20:59</option>
+                        <option value="21">亥 21:00-21:59</option>
+                        <option value="22">亥 22:00-22:59</option>
+                        <option value="23">子 23:00-23:59</option>
+                        <option value="23">子 23:00-23:59</option>
+                        <option value="23">子 23:00-23:59</option>
+                        <option value="23">子 23:00-23:59</option>
+                        <option value="23">子 23:00-23:59</option>
+                        <option value="23">子 23:00-23:59</option>
+                        <option value="23">子 23:00-23:59</option>
+                        <option value="23">子 23:00-23:59</option>   
+                    </select>
+                    <div class="mdui-divider-light"></div>
+                </p>
+
+                
+                    <div class="mdui-col">
+                        <button class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple">block</button>
+                    </div>
+               
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="mdui-col-xs-6">
+            <div class="mdui-panel" mdui-panel>
+                <div class="mdui-panel-item">
+                  <div class="mdui-panel-item-header">再看看纳音🐱‍👓</div>
+                  <div class="mdui-panel-item-body">
+                    <p>First content</p>
+                    <p>First content</p>
+                    <p>First content</p>
+                    <p>First content</p>
+                    <p>First content</p>
+                    <p>First content</p>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="static/MDUI/js/mdui.min.js"></script>
+    </body>
+</html>
