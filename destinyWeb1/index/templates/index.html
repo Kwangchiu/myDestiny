@@ -15,16 +15,7 @@ href = "{% static 'css/semantic.css' %}"-->
         <link rel="stylesheet" href="static/MDUI/css/mdui.min.css"/>
     </head>
     <style type = "text/css">
-        body
-        {   /*
-            *background-image:url("static/image/f.jpg");
-            *background-repeat:no-repeat;
-            *background-size:100% 1720%;
-            *background-attachment:inherit;
-            */
-
-            
-        }
+      
 
         #login {
             font-family: 'Comic Sans MS', cursive, sans-serif; /*字体*/
@@ -46,6 +37,7 @@ href = "{% static 'css/semantic.css' %}"-->
         </div>
     </div>
     
+    <form method="GET">
     <div class="mdui-row">
         <div class="mdui-col-xs-6">
             <div class="mdui-panel" mdui-panel>
@@ -83,7 +75,7 @@ href = "{% static 'css/semantic.css' %}"-->
 
                             <div class="mdui-col-xs-6 mdui-col-sm-4">
                                     <div class="mdui-container mdui-valign">
-                                            <select class="mdui-select" mdui-select="{position: 'bottom'}">
+                                            <select name="day" class="mdui-select" mdui-select="{position: 'bottom'}">
                                                 {% for day in day %}
                                                     <option value="{{ day }}">{{ day }}</option>
                                                 {% endfor %}
@@ -97,9 +89,9 @@ href = "{% static 'css/semantic.css' %}"-->
                     </p>
 
                       
-                <p>
+                <p method="POST">
                     <label>时辰：</label>
-                    <select class="mdui-select" mdui-select="{position: 'bottom'}">
+                    <select name = "time" class="mdui-select" mdui-select="{position: 'bottom'}">
                         <option value="0">子 00:00-00:59</option>
                         <option value="1">丑 01:00-01:59</option>
                         <option value="2">丑 02:00-02:59</option>
@@ -134,17 +126,34 @@ href = "{% static 'css/semantic.css' %}"-->
                     </select>
                     <div class="mdui-divider-light"></div>
                 </p>
-
-                
-                    <div class="mdui-col">
-                        <button class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple">block</button>
+        
+               
+                <div class="mdui-col">
+                    <button class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#baziBtn'}">点击算八字(ง •_•)ง</button>
+                    
+                    <div class="mdui-dialog" id="baziBtn">
+                        <div class="mdui-dialog-title">待老夫掐指一算</div>
+                        <div class="mdui-dialog-content">
+                        
+                        {% for m,n in times.items %}
+                            {{ m }}:{{ n }}
+                        {% endfor %}
+                        
+                        </div>
+                        <div class="mdui-dialog-actions">
+                            <button class="mdui-btn mdui-ripple" mdui-dialog-confirm>确定</button>
+                            <button class="mdui-btn mdui-ripple" mdui-dialog-close>取消</button>
+                        </div>
                     </div>
+                </div>
                
                 </div>
                 </div>
                 </div>
             </div>
         </div>
+    </form>
+
         <div class="mdui-col-xs-6">
             <div class="mdui-panel" mdui-panel>
                 <div class="mdui-panel-item">

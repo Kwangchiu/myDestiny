@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label for="byear">出生年月</label>
+<select name="byear">
+    {% for year111 in data %}
+    <option value="{{ year111}}">{{ year111 }}</option>
+    {% endfor %}
+</select>
+ 
+ 
+</body>
+</html>
