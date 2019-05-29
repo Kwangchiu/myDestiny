@@ -13,6 +13,7 @@ href = "{% static 'css/semantic.css' %}"-->
         <meta name="viewport" content="width=device-width">
         <title>Django Simple Login</title>
         <link rel="stylesheet" href="static/MDUI/css/mdui.min.css"/>
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     </head>
     <style type = "text/css">
       
@@ -37,7 +38,7 @@ href = "{% static 'css/semantic.css' %}"-->
         </div>
     </div>
     
-    <form method="GET">
+
     <div class="mdui-row">
         <div class="mdui-col-xs-6">
             <div class="mdui-panel" mdui-panel>
@@ -50,7 +51,7 @@ href = "{% static 'css/semantic.css' %}"-->
                             
                                 <div class="mdui-container mdui-valign">
                                 <label>日期：</label>
-                                    <select name="year" class="mdui-select" mdui-select="{position: 'buttom'}">
+                                    <select id="year" class="mdui-select" mdui-select="{position: 'buttom'}">
                                         {% for year111 in year %}
                                             <option value="{{ year111}}">{{ year111 }}</option>
                                         {% endfor %}
@@ -62,7 +63,7 @@ href = "{% static 'css/semantic.css' %}"-->
 
                             <div class="mdui-col-xs-6 mdui-col-sm-4">
                                     <div class="mdui-container mdui-valign" >
-                                            <select name="month" class="mdui-select" mdui-select="{position: 'bottom'}">
+                                            <select id="month" class="mdui-select" mdui-select="{position: 'bottom'}">
                                             
                                             {% for month in month %}
                                                 <option value="{{ month }}">{{ month }}</option>
@@ -75,7 +76,7 @@ href = "{% static 'css/semantic.css' %}"-->
 
                             <div class="mdui-col-xs-6 mdui-col-sm-4">
                                     <div class="mdui-container mdui-valign">
-                                            <select name="day" class="mdui-select" mdui-select="{position: 'bottom'}">
+                                            <select id="day" class="mdui-select" mdui-select="{position: 'bottom'}">
                                                 {% for day in day %}
                                                     <option value="{{ day }}">{{ day }}</option>
                                                 {% endfor %}
@@ -89,9 +90,9 @@ href = "{% static 'css/semantic.css' %}"-->
                     </p>
 
                       
-                <p method="POST">
+                <p>
                     <label>时辰：</label>
-                    <select name = "time" class="mdui-select" mdui-select="{position: 'bottom'}">
+                    <select id = "time" class="mdui-select" mdui-select="{position: 'bottom'}">
                         <option value="0">子 00:00-00:59</option>
                         <option value="1">丑 01:00-01:59</option>
                         <option value="2">丑 02:00-02:59</option>
@@ -127,23 +128,51 @@ href = "{% static 'css/semantic.css' %}"-->
                     <div class="mdui-divider-light"></div>
                 </p>
         
-               
+                <script>
+                    function a(){
+                        //alert("aaa");
+                       // console.log("aaa")
+                       //$("#baziBtn").html("<button>aaa</button>");
+                       $.get("/test",{
+                           year: $("#year").val(),
+                           month:$("#month").val(),
+                           day:$("#day").val(),
+                           time:$("#time").val()
+                       },function(result){
+                           //console.log(result);
+                           window.inst = new mdui.Dialog('#baziBtn',{
+                                closeOnCancel :true,
+                                closeOnConfirm:true
+                           });  
+
+                           $("#baziBtn").html(result);
+                           window.inst.open();
+                       })
+                    }
+                </script>
                 <div class="mdui-col">
-                    <button class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#baziBtn'}">点击算八字(ง •_•)ง</button>
+                    <button class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple"  onclick="a()">点击算八字(ง •_•)ง</button>
                     
                     <div class="mdui-dialog" id="baziBtn">
+                      
+                        <!--
+
                         <div class="mdui-dialog-title">待老夫掐指一算</div>
-                        <div class="mdui-dialog-content">
-                        
-                        {% for m,n in times.items %}
-                            {{ m }}:{{ n }}
+                        <div name=times class="mdui-dialog-content">
+                        {% for m,n in field.items %}
+                                {{ m }}:{{ n }}
+                                <br>
                         {% endfor %}
-                        
+                       
+                        </br>
                         </div>
                         <div class="mdui-dialog-actions">
                             <button class="mdui-btn mdui-ripple" mdui-dialog-confirm>确定</button>
                             <button class="mdui-btn mdui-ripple" mdui-dialog-close>取消</button>
                         </div>
+
+                        -->
+                        
                     </div>
                 </div>
                
@@ -152,7 +181,6 @@ href = "{% static 'css/semantic.css' %}"-->
                 </div>
             </div>
         </div>
-    </form>
 
         <div class="mdui-col-xs-6">
             <div class="mdui-panel" mdui-panel>
@@ -170,6 +198,6 @@ href = "{% static 'css/semantic.css' %}"-->
             </div>
         </div>
     </div>
-    <script src="static/MDUI/js/mdui.min.js"></script>
+    <script src="static/MDUI/js/mdui.js"></script>
     </body>
 </html>
